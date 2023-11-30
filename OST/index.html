@@ -1,0 +1,201 @@
+<script src="http://www.google.com/jsapi" type="text/javascript"></script>
+<script type="text/javascript">google.load("jquery", "1.3.2");</script>
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap"
+      rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="../utils/style_project_page.css" media="screen"/>
+<link href="https://fonts.googleapis.com/css?family=Arvo|Roboto&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://cdn.rawgit.com/jpswalsh/academicons/master/css/academicons.min.css">
+<link rel="stylesheet" href="https://unpkg.com/@glidejs/glide/dist/css/glide.core.min.css">
+
+
+<html lang="en">
+<head>
+	<title>OST: Refining Text Knowledge with Optimal Spatio-Temporal Descriptor for General Video Recognition</title>
+
+    <meta charset="UTF-8">
+
+    <!-- Add your Google Analytics tag here -->
+    <!-- <script async
+            src=""></script> -->
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+        gtag('config', 'UA-97476543-1');
+    </script>
+
+</head>
+
+<body>
+<div class="container">
+    <h1 class="project-title">
+        OST: Refining Text Knowledge with Optimal Spatio-Temporal <br> Descriptor for General Video Recognition
+    </h1>
+
+    <div class="conference">
+        Preprint
+    </div>
+
+    <br><br>
+
+
+    <div class="authors">
+        <a href=https://tomchen-ctj.github.io>
+            Tongjia Chen <sup>1</sup>
+        </a>
+        <a>
+            Hongshan Yu <sup>1</sup>
+        </a>
+        <a>
+            Zhengeng Yang <sup>2</sup>
+        </a>
+        <a>
+            Zechuan Li <sup>1</sup>
+        </a>
+        <a>
+            Wei Sun <sup>1</sup>
+        </a>
+        <a href=https://www.crcv.ucf.edu/chenchen//>
+            Chen Chen <sup>3</sup>
+        </a>
+    </div>
+    <br>
+
+    <div class="affiliations">
+        <span><sup>1</sup> Hunan University</span>
+        <span><sup>2</sup> Hunan Normal University</span> </br>
+        <span><sup>3</sup> Center for Research in Computer Vision, University of Central Florida</span> </br>
+    </div>
+    <br><br>
+
+    <div class="project-icons">
+        <a href="https://arxiv.org/">
+            <i class="fa fa-file-pdf-o"></i> <br/>
+            Paper
+        </a>
+        <a href="https://github.com/tomchen-ctj/OST">
+            <i class="fa fa-github"></i> <br/>
+            Code <br/>
+        </a>
+        <!-- <a href="https://qitaozhao.github.io">
+            <i class="fa fa-youtube-play"></i> <br/>
+            Video (in preparation)
+        </a> -->
+    </div>
+
+    <div class="teaser">
+        <br>
+        <p style="width: 90%; text-align: left;">
+            In this work, we introduce a novel general video recognition pipeline <b>OST</b>. We prompt an LLM to augment category names into <i>Spatio-Temporal Descriptors</i> and refine the semantic knowledge via <i>Optimal Descriptor Solver</i>.
+            <br>
+        <br> 
+        <img src="./images/teaser.png" alt="Teaser figure." style="display:block; margin:auto; width:60%;"/>
+
+        <p style="width: 90%; text-align: left;">
+            Motivation of our method. Dominant pipelines propose to tackle the visual discrepancies with additional temporal learners while overlooking the textual discrepancy between descriptive narratives and concise category names. This oversight results in a less separable latent space, which may hinder video recognition.
+        <br><br>
+        
+        <div class="subfigure-container">
+            <div class="subfigure">
+              <img src="./images/sanity_check_tsne.png" alt="First Image Description" style="width:80%;">
+            </div>
+            <div class="subfigure">
+              <img src="./images/sanity_check_similarity.png" alt="Second Image Description"  style="width:80%;">
+            </div>
+        </div>
+        <p style="width: 90%; text-align: left;">
+            Sanity check on category names. We investigate the semantic distribution of video category names <b>(Left)</b> and quantify the semantic density of category names <b>(Right)</b>. We observe a higher semantic similarity of category names on K400 and Sthv2 compared to ImageNet. Our proposed <i>Spatio-Temporal Descriptor</i> can greatly reduce the semantic similarity in latent space. 
+        <br>
+
+    </div>
+
+    <br><br>
+    
+    <hr>
+    <h1>Abstract</h1>
+
+    <p style="width: 85%">
+        Due to the resource-intensive nature of training vision-language models on expansive video data, a majority of studies have centered on adapting pre-trained image-language models to the video domain. Dominant pipelines propose to tackle the visual discrepancies with additional temporal learners while overlooking the substantial discrepancy for web-scaled descriptive narratives and concise action category names, leading to less distinct semantic space and potential performance limitations. In this work, we prioritize the refinement of text knowledge to facilitate generalizable video recognition. To address the limitations of the less distinct semantic space of category names, we prompt a large language model (LLM) to augment action class names into <i>Spatio-Temporal Descriptors</i> thus bridging the textual discrepancy and serving as a knowledge base for general recognition. Moreover, to assign the best descriptors with different video instances, we propose <i>Optimal Descriptor Solver</i>, forming the video recognition problem as solving the optimal matching flow across frame-level representations and descriptors. Comprehensive evaluations in zero-shot, few-shot, and fully supervised video recognition highlight the effectiveness of our approach. Our best model achieves a state-of-the-art zero-shot accuracy of <b>75.1%</b> on Kinetics-600. </p>
+    <br>
+    </p>
+
+    <hr>
+    <h1>Overview</h1>
+    <img src="./images/pipeline.png" style="width: 85%" alt="Pipeline."/></br>
+    <p style="width: 85%">
+        An overview of our pipeline for video recognition. We query the Large Language Model to augment category names to generate corresponding <i>Category Descriptors</i>. The descriptors disentangled category names into <i>Spatio-Temporal Descriptors</i> for static visual cues and temporal evolution, respectively. To fully refine the textual knowledge, we propose <i>Optimal Descriptor Solver</i> that adaptively aligns descriptors with video frames. An optimal matching flow is calculated through the iterative solving of the entropy-regularized OT problem to assign optimal descriptors for each video instance.</p></br>
+
+    <h1>Quantitative Results</h1>
+    <img src="./images/quant_zero_shot.png" style="width: 85%" alt="Zero-shot"/>
+    <img src="./images/quant_few_shot.png" style="width: 85%" alt="Zero-shot"/>
+    <img src="./images/quant_fully_sup.png" style="width: 40%" alt="Zero-shot"/>
+    <p style="width: 85%">
+        To demonstrate the effectiveness of our <b>OST</b>, we conduct comprehensive experiments on six benchmarks, including Kinetics-400 & 600, UCF-101, HMDB-51, Something-Something V2, and ActivityNet. The results indicate that our method achieves state-of-the-art performance in open-vocabulary tasks, <i>e.g.</i> zero-shot, few-shot, and also consistently improves the performance when combined with existing pipelines in fully-supervised settings.</p></br>  
+
+    <img src="./images/attn_map_k600.png" style="width: 85%" alt="Attention Maps."/>
+    <p style="width: 85%">
+        Attention map on K600 validation set. We demonstrate <i>Spatio Descriptors</i> and <i>Temporal Descriptors</i> on the left and right, respectively. <b>(Left):</b> For videos that can be recognized via static frames, our <b>OST</b> attends to the certain object more while <a href="https://muzairkhattak.github.io/ViFi-CLIP/">ViFi-CLIP</a> is often distracted by the backgrounds. <b>(Right):</b> For classes that require more temporal clues, <a href="https://muzairkhattak.github.io/ViFi-CLIP/">ViFi-CLIP</a> attends to appearance (<i>e.g.</i> soccer ball and soccer field) more, while our <b>OST</b> shows consistent attention to the body's temporal salient parts such as the player's feet.</p></br>
+
+    <img src="./images/extreme_outlier.png" style="width: 85%" alt="Extreme Outlier."/>
+    <p style="width: 85%">
+        Generalization on extreme outliers. We utilize the text-to-video diffusion model <a href="https://showlab.github.io/Show-1/">Show-1</a> to generate synthetic videos with a semantic distribution distinct from the fine-tuning data in Kinetics-400 to further demonstrate the generalizability of our method. Attention map for \textit{Spatio Descriptors} and \textit{Temporal Descriptors} are visualized on the left and right, respectively.</p></br>        
+
+    <img src="./images/tp_sm_1.png" style="width: 60%" alt="Transport Plan."/>
+    <p style="width: 85%">
+        Visualization of the adaptive transport plan. Our <i>OD Solver</i> not only integrates various visual cues—such as <i>GPS devices</i>, <i>navigation trails</i> in top Figure, and <i>hammer-swinging motions</i> in bottom Figure, but also greatly reduce the detrimental effects of the noisy descriptors that often arise from the hallucination issues associated with LLMs, such as misleading <i>'hidden treasures'</i> in top Figure or <i>'repeat the swinging'</i> in bottom Figure. It is important to note that while the absolute variances among transport plans are relatively small, their substantial relative differences are critical in optimal matching.</p></br>
+
+    <br>
+
+    <hr>
+    <h1>Paper</h1>
+
+       <div class="paper-info">
+       <!-- <br> -->
+       <span style="font-size: 14pt; font-weight: bold;">OST: Refining Text Knowledge with Optimal Spatio-Temporal Descriptor for General Video Recognition</span><br>
+       <span style="font-size: 14pt;"> Tongjia Chen, Hongshan Yu, Zhengeng Yang, Zechuan Li, Wei Sun, Chen Chen. </span>  <br>
+       <span style="font-size: 14pt;">Preprint</span> 
+       <!-- <br> -->
+    
+       <!-- <pre><code>@inproceedings{
+    zhao2023contextaware,
+    title={A Single 2D Pose with Context is Worth Hundreds for 3D Human Pose Estimation},
+    author={Zhao, Qitao and Zheng, Ce and Liu, Mengyuan and Chen, Chen},
+    booktitle={Thirty-seventh Conference on Neural Information Processing Systems},
+    year={2023}, -->
+<!-- } -->
+</code></pre>
+</div>
+
+    <br><br>
+
+    <!-- <hr>
+    <h1>References</h1>
+    <p style="width: 85%;text-align:left; ">
+        [1] Ce Zheng, Sijie Zhu, Matias Mendieta, Taojiannan Yang, Chen Chen, and Zhengming Ding. <b>3d human pose estimation with spatial and temporal transformers</b>. In Proceedings of the IEEE/CVF International Conference on Computer Vision (ICCV), pages 11656–11665, October 2021.<br>
+
+        [2] Wenhao Li, Hong Liu, Hao Tang, Pichao Wang, and Luc Van Gool. <b>Mhformer: Multi-hypothesis transformer for 3d human pose estimation</b>. In Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR), pages 13147–13156, June 2022.<br>
+
+        [3] Wenkang Shan, Zhenhua Liu, Xinfeng Zhang, Shanshe Wang, Siwei Ma, and Wen Gao. <b>P-stmo: Pre-trained spatial temporal many-to-one model for 3d human pose estimation</b>. In Computer Vision–ECCV 2022: 17th European Conference, Tel Aviv, Israel, October 23–27, 2022, Proceedings, Part V, pages 461–478. Springer, 2022.<br><br>
+
+    </p> -->
+
+    <br><br> 
+    <hr>
+    <h1>Acknowledgements</h1>
+
+    <p style="width: 85%;">
+        The work was done while Tongjia was a research intern mentored by Chen Chen.
+        The webpage template is adapted from 
+        <a href="https://qianlim.github.io/POP">POP</a>.
+    
+    </p>
+
+    <br><br>
+</div>
+
+</body>
+
+</html>
